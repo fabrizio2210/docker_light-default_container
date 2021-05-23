@@ -3,7 +3,7 @@ ENV DOCKERVERSION=19.03.1
 ENV DOCKERARCH=x86_64
 
 RUN apt-get update && \
-    apt-get install -y curl git  \
+    apt-get install -y curl git ssh \
     && apt-get clean
 
 # install docker client
