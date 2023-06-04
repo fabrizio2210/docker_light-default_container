@@ -17,6 +17,7 @@ if [ $(uname -m) = "x86_64" ] ; then
   arch="x86_64"
 else
   arch="armv7hf"
+  docker_arch="armhf"
 fi
 
 ################
@@ -47,7 +48,7 @@ fi
 #######
 # Build
 
-docker build -t fabrizio2210/docker_light-default_container:${arch} -f docker/x86_64/Dockerfile --build-arg ARCH_VAR=${arch} .
+docker build -t fabrizio2210/docker_light-default_container:${arch} -f docker/x86_64/Dockerfile --build-arg ARCH_VAR=${docker_arch} .
 
 ######
 # Push
