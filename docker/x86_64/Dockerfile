@@ -1,8 +1,5 @@
 FROM debian
 
-ARG ARCH_VAR=x86_64
-ENV DOCKERARCH=$ARCH_VAR
-
 RUN apt-get update && \
     apt-get install -y curl git ssh gnupg \
     && apt-get clean

@@ -48,7 +48,7 @@ fi
 #######
 # Build
 
-docker build -t fabrizio2210/docker_light-default_container:${arch} -f docker/x86_64/Dockerfile --build-arg ARCH_VAR=${docker_arch} .
+docker build -t fabrizio2210/docker_light-default_container:${arch} -f docker/x86_64/Dockerfile .
 
 ######
 # Push
