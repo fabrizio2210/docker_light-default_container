@@ -1,21 +1,21 @@
 FROM debian
 
 ARG ARCH_VAR=x86_64
-ENV DOCKERVERSION=24.0.2
 ENV DOCKERARCH=$ARCH_VAR
 
 RUN apt-get update && \
-    apt-get install -y curl git ssh \
+    apt-get install -y curl git ssh gnupg \
     && apt-get clean
 
-# install docker client
-RUN curl -fsSLO https://download.docker.com/linux/static/stable/${DOCKERARCH}/docker-${DOCKERVERSION}.tgz \
-    && tar xzvf docker-${DOCKERVERSION}.tgz --strip 1 -C /usr/local/bin docker/docker \
-    && rm docker-${DOCKERVERSION}.tgz
+RUN install -m 0755 -d /etc/apt/keyrings \
+    && curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
+    && chmod a+r /etc/apt/keyrings/docker.gpg
 
-RUN curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" \
-    -o /usr/local/bin/docker-compose \
-    && chmod +x /usr/local/bin/docker-compose
+RUN echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
 
+RUN apt-get update \
+    && apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-WORKDIR /usr/local/bin/
