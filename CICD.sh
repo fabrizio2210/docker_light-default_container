@@ -54,3 +54,8 @@ docker build -t fabrizio2210/docker_light-default_container:${arch} -f docker/x8
 # Push
 
 docker push fabrizio2210/docker_light-default_container:${arch}
+
+#######
+# Clean
+
+docker container prune -f
