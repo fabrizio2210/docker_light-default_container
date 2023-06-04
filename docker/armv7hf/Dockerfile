@@ -1,5 +1,5 @@
 FROM balenalib/armv7hf-debian
-ENV DOCKERVERSION=19.03.1
+ENV DOCKERVERSION=24.0.2
 ENV DOCKERARCH=armhf
 
 
