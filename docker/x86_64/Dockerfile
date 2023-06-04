@@ -1,5 +1,7 @@
 FROM debian
 
+ENV DOCKER_BUILDKIT=0
+
 RUN apt-get update && \
     apt-get install -y curl git ssh gnupg \
     && apt-get clean
