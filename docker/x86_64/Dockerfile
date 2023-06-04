@@ -1,6 +1,8 @@
 FROM debian
+
+ARG ARCH_VAR=x86_64
 ENV DOCKERVERSION=24.0.2
-ENV DOCKERARCH=x86_64
+ENV DOCKERARCH=$ARCH_VAR
 
 RUN apt-get update && \
     apt-get install -y curl git ssh \
